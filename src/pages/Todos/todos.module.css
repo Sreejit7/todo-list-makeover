@@ -1,0 +1,32 @@
+.todos {
+  display: flex;
+  flex-direction: column;
+}
+
+.input {
+  padding: 6px 8px;
+  font-size: 1rem;
+  outline: 0;
+  border-radius: 4xpx;
+  border: 0;
+  border-bottom: 1px solid #000;
+  width: 25%;
+  text-align: center;
+}
+.input:focus{
+  border-bottom: 1px solid #6aa0f8;
+  /* box-shadow: 0px 0px 10px 0px #72a5f6,
+              0px 0px 15px 0px #a6c6f8,
+              0px 0px 18px 0px #cddffb; */
+}
+.input-section {
+  display: flex;
+  gap: 1.25vw;
+
+}
+.empty {
+  border-bottom: 1px solid orangered;
+  /* box-shadow: 0px 0px 10px 0px #f04624,
+              0px 0px 15px 0px #eb694f,
+              0px 0px 18px 0px #f3a798; */
+}

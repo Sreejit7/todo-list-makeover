@@ -1,0 +1,5 @@
+.todolist {
+  display: flex;
+  flex-direction: column;
+  gap: 3vh 0;
+}

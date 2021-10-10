@@ -1,0 +1,46 @@
+.container {
+  display: flex;
+  align-items: center;
+  gap: 3vw;
+}
+.todoitem {
+  display: flex;
+  align-items: center;
+  padding: 12px 18px;
+  background-color: rgb(251, 244, 235);
+  color: #141414;
+  border-radius: 4px;
+  border: 2px solid #fbeaca;
+  width: 30vw;
+  justify-content: space-between;
+}
+
+.delete {
+  display: flex;
+  justify-self: flex-end;
+  padding: 5px 8px;
+  border-radius: 5px;
+  border: 0;
+  transition: 0.3s ease all;
+}
+
+.delete:hover {
+  cursor: pointer;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  gap: 1vw;
+}
+
+.done {
+  text-decoration: line-through;
+  opacity: 0.5;
+  transition: 0.3s ease;
+}
+
+.message {
+  font-weight: 600;
+  color: rgb(5, 129, 5);
+}
