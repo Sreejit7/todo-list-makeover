@@ -1,5 +1,6 @@
 import React from "react";
 import "./App.css";
+import Layout from "./components/Layout";
 import Popup from "./components/Popup";
 import { usePopupContext } from "./contexts/PopupContext/usePopupContext";
 import { TodoProvider } from "./contexts/TodoContext/useTodoContext";
@@ -15,7 +16,9 @@ function App() {
     <>
       {message !== "" && <Popup />}
       <TodoProvider>
-        <Todos />
+        <Layout cName="flex column align-center">
+          <Todos />
+        </Layout>
       </TodoProvider>
     </>
   );
