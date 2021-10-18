@@ -7,6 +7,7 @@ import {
 } from "../../contexts/TodoContext/useTodoContext";
 import { colors } from "../../data/TodoItemColors";
 import { generateColorCode } from "../../helpers/generateColorCode";
+import { useNotification } from "../../hooks/useNotification";
 
 const Todos = () => {
   const [todoInput, setTodoInput] = useState("");
@@ -16,6 +17,8 @@ const Todos = () => {
     dispatch,
   } = useTodoContext();
 
+  const { showNotification, closeNotification } = useNotification();
+
   const addTodo = () => {
     const { backgroundColor, borderColor } = generateColorCode(colors);
     dispatch({
@@ -24,7 +27,13 @@ const Todos = () => {
       backgroundColor,
       borderColor,
     });
+    showNotification({
+      title: "New todo created!",
+      message: `You just created a new todo for ${todoInput}`
+    });
+
     setTodoInput("");
+    setTimeout(closeNotification, 2500);
   };
   return (
     <main className={`page ${styles.todos}`}>
