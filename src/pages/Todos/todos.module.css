@@ -1,6 +1,20 @@
 .todos {
   display: flex;
   flex-direction: column;
+  width: 60%;
+  gap: 3.5vh;
+}
+
+.todos-header {
+  text-align: center;
+}
+
+.todos-header-text {
+  font-size: 1.2rem;
+}
+
+.todos-header-title {
+  font-size: 2.25rem;
 }
 
 .input {
@@ -10,7 +24,7 @@
   border-radius: 4xpx;
   border: 0;
   border-bottom: 1px solid #000;
-  width: 25%;
+  width: 50%;
   text-align: center;
 }
 .input:focus{
@@ -22,7 +36,7 @@
 .input-section {
   display: flex;
   gap: 1.25vw;
-
+  
 }
 .empty {
   border-bottom: 1px solid orangered;

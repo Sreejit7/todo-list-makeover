@@ -28,6 +28,12 @@ const Todos = () => {
   };
   return (
     <main className={`page ${styles.todos}`}>
+      <header className={styles["todos-header"]}>
+        <h1 className={styles["todos-header-title"]}>To plan is to progress.</h1>
+        <span className={styles["todos-header-text"]}>
+          Start planning your day, tick off tasks and get going. 🚀
+        </span>
+      </header>
       <h3>Add a new todo</h3>
       <section className={styles["input-section"]}>
         <input
