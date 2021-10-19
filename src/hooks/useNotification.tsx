@@ -12,17 +12,31 @@ export const useNotification = () => {
   >(undefined);
 
   React.useEffect(() => {
+    if (typeof window.Notification !== undefined && permission === "default") {
+      askForPermission();
+    }
+
     return () => {
       if (notification) {
         notification.close();
       }
     };
-  });
+  }, []);
 
   const askForPermission = () => {
-    Notification.requestPermission().then((perm) => {
-      setPermission(perm);
-    });
+    try {
+      Notification.requestPermission().then((perm) => {
+        setPermission(perm);
+      });
+    } catch (error) {
+      if (error instanceof TypeError) {
+        Notification.requestPermission((perm) => {
+          setPermission(perm);
+        });
+      } else {
+        throw error;
+      }
+    }
   };
 
   const showNotification = ({ title, message }: notificationProps) => {
