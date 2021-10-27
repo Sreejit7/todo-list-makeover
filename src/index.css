@@ -1,11 +1,13 @@
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
 }
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Red Hat Display", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  font-family: -apple-system, BlinkMacSystemFont, "Red Hat Display", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -17,7 +19,8 @@ code {
 }
 
 .page {
-  padding: 3vh 5vw;
+  padding: 5vh 6.5vw;
+  min-height: 90vh;
 }
 
 .btn {
@@ -48,8 +51,9 @@ code {
   transition: 0.3s all ease;
 }
 
-.btn:disabled {
+button:disabled {
   cursor: not-allowed;
+  opacity: 0.75;
 }
 
 .flex {

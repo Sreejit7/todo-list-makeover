@@ -45,6 +45,7 @@
   width: 4vw;
   outline-width: 0;
   font-size: 1.1rem;
+  font-weight: inherit;
 }
 
 .input-txt {
@@ -53,8 +54,8 @@
   justify-content: center;
   background-color: rgb(246, 246, 246);
   font-size: 1.1rem;
-  padding: 0 1.5vw;
-  font-weight: 500;
+  padding: 0 2.5rem;
+  font-weight: 600;
   height: 4.5vh;
 }
 

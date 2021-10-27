@@ -6,7 +6,11 @@
 }
 
 .todos-header {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5vh;
+  margin-bottom: 5vh;
 }
 
 .todos-header-text {
