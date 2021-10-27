@@ -6,6 +6,7 @@ type ChildrenProps = {
 export enum TodoActionTypes {
   ADD_TODO = "ADD_TODO",
   DELETE_TODO = "DELETE_TODO",
+  SET_REMINDER_ID = "SET_REMINDER_ID",
 }
 type AddTodo = {
   type: TodoActionTypes.ADD_TODO;
@@ -17,7 +18,11 @@ type DeleteTodo = {
   type: TodoActionTypes.DELETE_TODO;
   id: number;
 };
-type Action = AddTodo | DeleteTodo;
+type SetReminderTodo = {
+  type: TodoActionTypes.SET_REMINDER_ID;
+  id: number;
+};
+type Action = AddTodo | DeleteTodo | SetReminderTodo;
 
 type Todo = {
   id: number;
@@ -27,6 +32,7 @@ type Todo = {
 };
 export type State = {
   todos: Todo[];
+  reminderId?: number;
 };
 export type Dispatch = (action: Action) => void;
 
@@ -52,6 +58,11 @@ const TodoReducer = (state: State = initialState, action: Action): State => {
       return {
         ...state,
         todos: updatedTodos,
+      };
+    case TodoActionTypes.SET_REMINDER_ID:
+      return {
+        ...state,
+        reminderId: action.id,
       };
     default:
       throw new Error("No action of this type exists!");

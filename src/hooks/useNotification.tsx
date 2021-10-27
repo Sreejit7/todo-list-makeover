@@ -15,7 +15,6 @@ export const useNotification = () => {
     if (typeof window.Notification !== undefined && permission === "default") {
       askForPermission();
     }
-
     return () => {
       if (notification) {
         notification.close();

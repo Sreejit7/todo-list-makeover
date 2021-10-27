@@ -3,7 +3,7 @@ import {
   useTodoContext,
 } from "../../contexts/TodoContext/useTodoContext";
 import styles from "./todoitem.module.css";
-import { RiDeleteBinLine } from "react-icons/ri";
+import { RiDeleteBinLine, RiAlarmLine } from "react-icons/ri";
 import { IoMdDoneAll } from "react-icons/io";
 import { useState } from "react";
 import {
@@ -75,6 +75,25 @@ const TodoItem = ({ task, id, bgColor, borderColor }: TodoProps) => {
             style={{ backgroundColor: borderColor }}
           >
             <RiDeleteBinLine />
+          </button>
+          <button
+            onClick={() => {
+              popupDispatch({
+                type: PopupActionTypes.CREATE_POPUP,
+                popup: {
+                  type: "reminder",
+                },
+              });
+              dispatch({
+                type: TodoActionTypes.SET_REMINDER_ID,
+                id,
+              });
+            }}
+            className={styles.delete}
+            style={{ backgroundColor: borderColor }}
+            disabled={done}
+          >
+            <RiAlarmLine />
           </button>
         </nav>
       </article>

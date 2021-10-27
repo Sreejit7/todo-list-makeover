@@ -30,6 +30,54 @@
   justify-content: space-between;
 }
 
+.input-section {
+  display: flex;
+  align-items: center;
+  margin: 2vh 0;
+}
+
+.input {
+  border: 0;
+  margin: 0;
+  text-align: center;
+  background-color: inherit;
+  transition: 0.3s all ease;
+  width: 4vw;
+  outline-width: 0;
+  font-size: 1.1rem;
+}
+
+.input-txt {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(246, 246, 246);
+  font-size: 1.1rem;
+  padding: 0 1.5vw;
+  font-weight: 500;
+  height: 4.5vh;
+}
+
+.reminder {
+  padding: 2.5rem;
+}
+
+.reminder-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* width: 100%; */
+  padding: 1vh 1vw;
+}
+
+.btn{
+  height: 4.5vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #aaa;
+}
+
 .success {
   color: rgb(8, 138, 8);
 }

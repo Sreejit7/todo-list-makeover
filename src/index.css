@@ -1,3 +1,7 @@
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+}
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Red Hat Display", "Roboto", "Oxygen",
@@ -33,6 +37,14 @@ code {
 
 .btn-primary:hover {
   background-color: #000;
+  transition: 0.3s all ease;
+}
+
+.btn-symbol {
+  width: 40px;
+  border: 0;
+  font-size: 1rem;
+  cursor: pointer;
   transition: 0.3s all ease;
 }
 
