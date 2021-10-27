@@ -17,11 +17,19 @@ type TodoProps = {
   bgColor: string;
   borderColor: string;
 };
+
+type MessageState = {
+  showMessage: boolean;
+  message?: string;
+};
+
 const TodoItem = ({ task, id, bgColor, borderColor }: TodoProps) => {
   const { dispatch } = useTodoContext();
   const { dispatch: popupDispatch } = usePopupContext();
   const [done, setDone] = useState(false);
-  const [displayMessage, setDisplayMessage] = useState(false);
+  const [displayMessage, setDisplayMessage] = useState<MessageState>({
+    showMessage: false,
+  });
 
   const deleteTodo = () => {
     dispatch({
@@ -48,6 +56,16 @@ const TodoItem = ({ task, id, bgColor, borderColor }: TodoProps) => {
     });
   };
 
+  const setReminderConfirm = () => {
+    setDisplayMessage({
+      showMessage: true,
+      message: "Reminder set for this todo!",
+    });
+    setTimeout(() => {
+      setDisplayMessage({ showMessage: false });
+    }, 3000);
+  };
+
   return (
     <section className={styles.container}>
       <article
@@ -59,9 +77,14 @@ const TodoItem = ({ task, id, bgColor, borderColor }: TodoProps) => {
           <button
             onClick={() => {
               setDone(true);
-              setDisplayMessage(true);
+              setDisplayMessage({
+                showMessage: true,
+                message: "Great job! You did it!",
+              });
               setTimeout(() => {
-                setDisplayMessage(false);
+                setDisplayMessage({
+                  showMessage: false,
+                });
               }, 3000);
             }}
             className={styles.delete}
@@ -82,6 +105,7 @@ const TodoItem = ({ task, id, bgColor, borderColor }: TodoProps) => {
                 type: PopupActionTypes.CREATE_POPUP,
                 popup: {
                   type: "reminder",
+                  confirmFn: setReminderConfirm,
                 },
               });
               dispatch({
@@ -97,8 +121,8 @@ const TodoItem = ({ task, id, bgColor, borderColor }: TodoProps) => {
           </button>
         </nav>
       </article>
-      {displayMessage && (
-        <span className={styles.message}>Great job! You did it!</span>
+      {displayMessage.showMessage && (
+        <span className={styles.message}>{displayMessage.message}</span>
       )}
     </section>
   );

@@ -11,7 +11,7 @@ import { useTodoContext } from "../../contexts/TodoContext/useTodoContext";
 const ReminderPopup = () => {
   const {
     state: {
-      popup: { type },
+      popup: { type, confirmFn },
     },
     dispatch,
   } = usePopupContext();
@@ -37,6 +37,7 @@ const ReminderPopup = () => {
   };
 
   const confirmReminder = () => {
+    confirmFn && confirmFn();
     const reminderTask = todos.find(({ id }) => id === reminderId)?.task;
     setTimeout(
       () =>
@@ -57,7 +58,11 @@ const ReminderPopup = () => {
       <article className={`${styles.popup} ${styles.reminder}`}>
         <h3>Remind for this To-do in:</h3>
         <span className={styles["input-section"]}>
-          <button className={`btn-symbol ${styles.btn}`} onClick={decreaseTime}>
+          <button
+            className={`btn-symbol ${styles.btn}`}
+            onClick={decreaseTime}
+            disabled={reminderTime <= 5}
+          >
             -
           </button>
           <span className={styles["input-txt"]}>
@@ -69,7 +74,11 @@ const ReminderPopup = () => {
             />
             <p>Minutes</p>
           </span>
-          <button className={`btn-symbol ${styles.btn}`} onClick={increaseTime}>
+          <button
+            className={`btn-symbol ${styles.btn}`}
+            onClick={increaseTime}
+            disabled={reminderTime >= 30}
+          >
             +
           </button>
         </span>
