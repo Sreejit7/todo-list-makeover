@@ -20,7 +20,7 @@
   background: transparent;
   position: fixed;
   z-index: 5;
-  /* background-color: #0000006b; */
+  background-color: #0000006b;
 }
 
 .popup-footer {
