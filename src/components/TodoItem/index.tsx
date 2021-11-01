@@ -75,6 +75,7 @@ const TodoItem = ({ task, id, bgColor, borderColor }: TodoProps) => {
         {task}
         <nav className={styles.buttons}>
           <button
+            title="Mark as Done"
             onClick={() => {
               setDone(true);
               setDisplayMessage({
@@ -93,6 +94,7 @@ const TodoItem = ({ task, id, bgColor, borderColor }: TodoProps) => {
             <IoMdDoneAll />
           </button>
           <button
+            title="Delete"
             onClick={done ? deleteTodo : deleteConfirmPopup}
             className={styles.delete}
             style={{ backgroundColor: borderColor }}
@@ -100,6 +102,7 @@ const TodoItem = ({ task, id, bgColor, borderColor }: TodoProps) => {
             <RiDeleteBinLine />
           </button>
           <button
+            title="Put a Reminder"
             onClick={() => {
               popupDispatch({
                 type: PopupActionTypes.CREATE_POPUP,
