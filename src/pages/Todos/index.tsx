@@ -7,6 +7,7 @@ import {
 } from "../../contexts/TodoContext/useTodoContext";
 import { colors } from "../../data/TodoItemColors";
 import { generateColorCode } from "../../helpers/generateColorCode";
+import { useNotification } from "../../hooks/useNotification";
 
 const Todos = () => {
   const [todoInput, setTodoInput] = useState("");
@@ -24,6 +25,7 @@ const Todos = () => {
       backgroundColor,
       borderColor,
     });
+
     setTodoInput("");
   };
   return (

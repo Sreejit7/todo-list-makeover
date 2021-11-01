@@ -3,12 +3,15 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import { PopupProvider } from "./contexts/PopupContext/usePopupContext";
+import { TodoProvider } from "./contexts/TodoContext/useTodoContext";
 
 ReactDOM.render(
   <React.StrictMode>
-    <PopupProvider>
-      <App />
-    </PopupProvider>
+    <TodoProvider>
+      <PopupProvider>
+        <App />
+      </PopupProvider>
+    </TodoProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

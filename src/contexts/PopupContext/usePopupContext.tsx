@@ -12,8 +12,8 @@ export enum PopupActionTypes {
 type CreatePopup = {
   type: PopupActionTypes.CREATE_POPUP;
   popup: {
-    type: "warning" | "success";
-    message: string;
+    type: "warning" | "success" | "reminder";
+    message?: string;
     confirmFn?: () => void;
   };
 };
@@ -26,8 +26,8 @@ type Action = CreatePopup | DeletePopup;
 
 type State = {
   popup: {
-    type: "warning" | "success";
-    message: string;
+    type: "warning" | "success" | "reminder";
+    message?: string;
     confirmFn?: () => void;
   };
 };
@@ -36,8 +36,7 @@ type Dispatch = (action: Action) => void;
 
 const initialState: State = {
   popup: {
-    type: "warning",
-    message: "",
+    type: "warning"
   },
 };
 
