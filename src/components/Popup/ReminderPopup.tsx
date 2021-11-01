@@ -41,6 +41,7 @@ const ReminderPopup = () => {
     const reminderTask = todos.find(({ id }) => id === reminderId)?.task;
     setTimeout(
       () =>
+        // If task is not defined, just show 'next task' instead of name 
         showNotification({
           title: `Time for ${reminderTask ? reminderTask : "your next task!"}`,
           message:

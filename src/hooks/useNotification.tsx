@@ -12,6 +12,7 @@ export const useNotification = () => {
   >(undefined);
 
   React.useEffect(() => {
+    // Ask for permission if notifications are not allowed
     if (typeof window.Notification !== undefined && permission === "default") {
       askForPermission();
     }
@@ -38,6 +39,7 @@ export const useNotification = () => {
     }
   };
 
+  // TODO: Add proper notification icon, onclick functions etc.
   const showNotification = ({ title, message }: notificationProps) => {
     const notification = new Notification(title, {
       body: message,
