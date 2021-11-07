@@ -5,7 +5,7 @@ import {
 import styles from "./todoitem.module.css";
 import { RiDeleteBinLine, RiAlarmLine } from "react-icons/ri";
 import { IoMdDoneAll } from "react-icons/io";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   PopupActionTypes,
   usePopupContext,
@@ -16,6 +16,7 @@ type TodoProps = {
   id: number;
   bgColor: string;
   borderColor: string;
+  completed: boolean;
 };
 
 type MessageState = {
@@ -23,14 +24,23 @@ type MessageState = {
   message?: string;
 };
 
-const TodoItem = ({ task, id, bgColor, borderColor }: TodoProps) => {
-  const { dispatch } = useTodoContext();
+const TodoItem = ({ task, id, bgColor, borderColor, completed }: TodoProps) => {
+  // TODO: Remove the done local state, re-use the global todos state
+  const {
+    state: { todos },
+    dispatch,
+  } = useTodoContext();
   const { dispatch: popupDispatch } = usePopupContext();
   const [done, setDone] = useState(false);
   const [displayMessage, setDisplayMessage] = useState<MessageState>({
     showMessage: false,
   });
 
+  useEffect(() => {
+    if (completed) {
+      setDone(true);
+    }
+  }, []);
   const deleteTodo = () => {
     dispatch({
       type: TodoActionTypes.DELETE_TODO,
@@ -86,10 +96,15 @@ const TodoItem = ({ task, id, bgColor, borderColor }: TodoProps) => {
                 setDisplayMessage({
                   showMessage: false,
                 });
+                dispatch({
+                  type: TodoActionTypes.COMPLETE_TODO,
+                  id,
+                });
               }, 3000);
             }}
             className={styles.delete}
             style={{ backgroundColor: borderColor }}
+            disabled={done}
           >
             <IoMdDoneAll />
           </button>

@@ -6,6 +6,7 @@ type ChildrenProps = {
 export enum TodoActionTypes {
   ADD_TODO = "ADD_TODO",
   DELETE_TODO = "DELETE_TODO",
+  COMPLETE_TODO = "COMPLETE_TODO",
   SET_REMINDER_ID = "SET_REMINDER_ID",
 }
 type AddTodo = {
@@ -18,17 +19,22 @@ type DeleteTodo = {
   type: TodoActionTypes.DELETE_TODO;
   id: number;
 };
+type CompleteTodo = {
+  type: TodoActionTypes.COMPLETE_TODO;
+  id: number;
+};
 type SetReminderTodo = {
   type: TodoActionTypes.SET_REMINDER_ID;
   id: number;
 };
-type Action = AddTodo | DeleteTodo | SetReminderTodo;
+type Action = AddTodo | DeleteTodo | CompleteTodo | SetReminderTodo;
 
 type Todo = {
   id: number;
   task: string;
   backgroundColor: string;
   borderColor: string;
+  completed: boolean;
 };
 export type State = {
   todos: Todo[];
@@ -49,7 +55,10 @@ const TodoReducer = (state: State = initialState, action: Action): State => {
       const { task, backgroundColor, borderColor } = action;
       return {
         ...state,
-        todos: [...state.todos, { id, task, backgroundColor, borderColor }],
+        todos: [
+          ...state.todos,
+          { id, task, backgroundColor, borderColor, completed: false },
+        ],
       };
     case TodoActionTypes.DELETE_TODO:
       let updatedTodos = [...state.todos];
@@ -58,6 +67,20 @@ const TodoReducer = (state: State = initialState, action: Action): State => {
       return {
         ...state,
         todos: updatedTodos,
+      };
+    case TodoActionTypes.COMPLETE_TODO:
+      let updatedCompleteTodos = [...state.todos];
+      const completedIndex = updatedCompleteTodos.findIndex(
+        (todo) => todo.id === action.id
+      );
+      const completedTodo = {
+        ...updatedCompleteTodos[completedIndex],
+        completed: true,
+      };
+      updatedCompleteTodos[completedIndex] = completedTodo;
+      return {
+        ...state,
+        todos: updatedCompleteTodos,
       };
     case TodoActionTypes.SET_REMINDER_ID:
       return {
