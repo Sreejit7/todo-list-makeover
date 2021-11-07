@@ -10,11 +10,9 @@ const TodoList = ({ type }: Props) => {
   const {
     state: { todos },
   } = useTodoContext();
-  const todolistRef = useRef<HTMLUListElement>(null);
-  console.log(todolistRef.current);
   return (
     <>
-      <ul ref={todolistRef} className={styles.todolist}>
+      <ul className={styles.todolist}>
         {todos
           .filter(({ completed }) =>
             type === "completed" ? completed : !completed
